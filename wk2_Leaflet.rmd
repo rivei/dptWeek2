@@ -1,0 +1,44 @@
+---
+title: "Week 2 Assignment: R Markdown and Leaflet"
+author: "Wei"
+date: "9 February 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## The map of Polimi
+
+This is an R Markdown document using Leaflet to show the map of Politecnico di Milano, which is my current university.
+
+Below you can see the code and the interactive map, which you can click on the logos to see more information for the building in my university.
+
+```{r printmap, echo=TRUE}
+library(leaflet)
+
+poliIcon <- makeIcon(
+  iconUrl = "http://hoc.elet.polimi.it/giovio/Immagini/LogoPoli.gif",
+  iconWidth = 200/4, iconHeight = 100/4,
+  iconAnchorX = 200/4/2, iconAnchorY = 100/4
+)
+
+polidf <- data.frame(
+  lat = c(45.478050, 45.479595, 45.478742, 45.477929),
+  lng = c(9.227369, 9.227761, 9.232390, 9.234558))
+
+poliSites <- c(
+  "<a href='http://www.polimi.it/'>East Baltimore Campus</a>",
+  "<a href='http://www.biblio.polimi.it/sedi/biblioteche/biblioteca-centrale-di-architettura/'>Central Library of Architecture</a>",
+  "<a href='http://www.deib.polimi.it/eng/home-page'>Dipartimento di Elettronica, Informazione e Bioingegneria</a>",
+  "<a href='http://esnpolimi.it/site/'>ESN Politecnico Milano</a>"
+)
+
+polidf %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = poliIcon, popup = poliSites)
+
+
+```
