@@ -2,12 +2,11 @@
 title: "Week 2 Assignment: R Markdown and Leaflet"
 author: "Wei"
 date: "9 February 2017"
-output: html_document
+always_allow_html: yes
+output: 
+  html_document: 
+    keep_md: yes
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## The map of Polimi
 
